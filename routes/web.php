@@ -14,6 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resources(['/article'=>'ArticleController']);
+//Route::get('/article','ArticleController@index');
 
 Auth::routes();
 
