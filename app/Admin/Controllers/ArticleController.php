@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Article;
+use App\Category;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -83,13 +84,15 @@ class ArticleController extends Controller
 
         $grid->id('Id');
         $grid->title('Title');
+        //$grid->category_id('Category id');
+        $grid->column('category.name','Категория');
+        $grid->category()->name();
         $grid->slug('Slug');
-        $grid->image('Image');
+        $grid->avatar()->image('Image');
         $grid->intro('Intro');
-        $grid->body('Body');
-        $grid->category_id('Category id');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        //$grid->body('Body');
+        //$grid->created_at('Created at');
+        //$grid->updated_at('Updated at');
 
         return $grid;
     }
@@ -107,10 +110,10 @@ class ArticleController extends Controller
         $show->id('Id');
         $show->title('Title');
         $show->slug('Slug');
-        $show->image('Image');
+        $show->avatar()->image('Image');
         $show->intro('Intro');
         $show->body('Body');
-        $show->category_id('Category id');
+        $show->category_id('Категория');
         $show->created_at('Created at');
         $show->updated_at('Updated at');
 
@@ -131,7 +134,8 @@ class ArticleController extends Controller
         $form->image('image', 'Image');
         $form->textarea('intro', 'Intro');
         $form->textarea('body', 'Body');
-        $form->number('category_id', 'Category id');
+        //$form->number('category_id', 'Category id');
+        $form->select('category_id','Категория')->options(Category::all()->pluck('name', 'id'));
 
         return $form;
     }

@@ -13,9 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //Config::load();  // Add this
     }
-
     /**
      * Register any application services.
      *
