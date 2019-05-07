@@ -88,7 +88,10 @@ class ArticleController extends Controller
         $grid->column('category.name','Категория');
         $grid->category()->name();
         $grid->slug('Slug');
-        $grid->avatar()->image('Image');
+        $grid->image('Image')->display(function ($name){
+            $link = '<img width = "100" height="100" src="/uploads/';
+            return $link.=$name.'">"';
+        });
         $grid->intro('Intro');
         //$grid->body('Body');
         //$grid->created_at('Created at');
@@ -110,7 +113,12 @@ class ArticleController extends Controller
         $show->id('Id');
         $show->title('Title');
         $show->slug('Slug');
-        $show->avatar()->image('Image');
+        $show->image('Image')->display(function ($name){
+            $link = '<img width = "100" height="100" src="/uploads/';
+            return $link.=$name.'">"';
+        });
+
+        $show->image('image');
         $show->intro('Intro');
         $show->body('Body');
         $show->category_id('Категория');
@@ -131,7 +139,7 @@ class ArticleController extends Controller
 
         $form->text('title', 'Title');
         $form->text('slug', 'Slug');
-        $form->image('image', 'Image');
+        $form->image('image', 'Image')->uniqueName();
         $form->textarea('intro', 'Intro');
         $form->textarea('body', 'Body');
         //$form->number('category_id', 'Category id');

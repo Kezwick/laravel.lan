@@ -1,6 +1,13 @@
 <?php
 
 return [
+     /*
+     |------------------------------------------------------------------------
+     |Добавил что бы устранить ошибку 'config/filesystems.php'
+     |------------------------------------------------------------------------
+     */
+
+    'admin' => [ 'driver' => 'local', 'root' => storage_path('app/public'), 'url' => env('APP_URL').'/storage',   'visibility' => 'public', ],
 
     /*
     |--------------------------------------------------------------------------
@@ -53,6 +60,13 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
+        ],
+
+        'admin' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/uploads',
         ],
 
         's3' => [
